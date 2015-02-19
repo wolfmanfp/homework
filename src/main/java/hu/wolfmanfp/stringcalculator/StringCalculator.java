@@ -1,7 +1,7 @@
 package hu.wolfmanfp.stringcalculator;
 
 public class StringCalculator {
-    int add(String numbers) {
+    int add(String numbers) throws Exception {
         int sum = 0;
         
         if(!numbers.isEmpty()) {
@@ -11,8 +11,12 @@ public class StringCalculator {
             
             input = numbers.split(",");
             numberArray = new int[input.length];
-            for (String s : input) {
-                numberArray[i] = Integer.parseInt(s);
+            for (String s : input) {              
+                if (Integer.parseInt(s)<0) {
+                    throw new Exception("Negative numbers are not allowed: "+Integer.parseInt(s));
+                } else {
+                    numberArray[i]=Integer.parseInt(s);
+                }
                 i++;
             }
             i=0;
