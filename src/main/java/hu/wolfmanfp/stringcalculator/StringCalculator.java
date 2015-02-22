@@ -1,7 +1,7 @@
 package hu.wolfmanfp.stringcalculator;
 
 public class StringCalculator {
-    int add(String numbers) throws Exception {
+    public int add(String numbers) throws Exception {
         int sum = 0;
         
         if(!numbers.isEmpty()) {
@@ -20,10 +20,9 @@ public class StringCalculator {
                 i++;
             }
             i=0;
-            for (int number : numberArray) {
-                sum+=numberArray[i];
-                i++;
-            }
+            for (int j = 0; j < numberArray.length; j++) {
+				sum+=numberArray[j];
+			}
         }
         else sum = 0;
         
