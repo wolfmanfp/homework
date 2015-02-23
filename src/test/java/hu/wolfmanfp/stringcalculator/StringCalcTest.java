@@ -5,29 +5,34 @@
  */
 package hu.wolfmanfp.stringcalculator;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 /**
  *
  * @author wolfman
  */
 public class StringCalcTest {
+    int sum;
+    StringCalculator calculator;
+    
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
+    
+    @Before
+    public void setUp() {
+        sum=0;
+        calculator = new StringCalculator();
+    }
     
     public StringCalcTest() {
     }
  
     @Test
-    public void test() throws Exception {
-        int sum;
-        StringCalculator calculator = new StringCalculator();      
-            
+    public void test1() throws Exception {      
         sum = calculator.add("");
         assertTrue(sum==0);
 
@@ -41,14 +46,20 @@ public class StringCalcTest {
         assertTrue(sum==4);
 
         sum = calculator.add("10,4");
-        assertTrue(sum==14);
-
+        assertTrue(sum==14);     
+    }
+    
+    @Test
+    public void test2() throws Exception {
         sum = calculator.add("1,3,1,5");
         assertTrue(sum==10);
 
         sum = calculator.add("10,4,5,12,4");
         assertTrue(sum==35);
-
+    }
+    
+    @Test
+    public void test3() throws Exception {
         sum = calculator.add("1;2");
         assertTrue(sum==3);
 
@@ -57,9 +68,18 @@ public class StringCalcTest {
 
         sum = calculator.add("4|2");
         assertTrue(sum==6);
-
-        sum = calculator.add("1,3,2,-5");
-        fail();
-        
     }
+    
+    @Test
+    public void test4() throws Exception {
+//        exception.expect(IllegalArgumentException.class);
+        sum = calculator.add("1,3,2,-5");
+    }
+    
+    @Test
+    public void test5() throws Exception {
+        sum = calculator.add("2,lol");
+        assertTrue(sum==2);        
+    }
+    
 }

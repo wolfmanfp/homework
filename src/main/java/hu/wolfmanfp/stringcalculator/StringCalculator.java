@@ -1,7 +1,7 @@
 package hu.wolfmanfp.stringcalculator;
 
 public class StringCalculator {
-    public int add(String numbers) throws Exception {
+    public int add(String numbers){
         int sum = 0;
         
         if(!numbers.isEmpty()) {
@@ -9,11 +9,15 @@ public class StringCalculator {
             int[] numberArray;
             int i = 0;
             
-            input = numbers.split(",");
+            input = numbers.split("[,;\\n|]");
             numberArray = new int[input.length];
             for (String s : input) {              
                 if (Integer.parseInt(s)<0) {
-                    throw new Exception("Negative numbers are not allowed: "+Integer.parseInt(s));
+//                    try {
+//                        throw new IllegalArgumentException("Negative numbers are not allowed: "+Integer.parseInt(s));
+//                    } catch (Exception ex) {
+//                        Logger.getLogger(StringCalculator.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
                 } else {
                     numberArray[i]=Integer.parseInt(s);
                 }
@@ -21,8 +25,8 @@ public class StringCalculator {
             }
             i=0;
             for (int j = 0; j < numberArray.length; j++) {
-				sum+=numberArray[j];
-			}
+		sum+=numberArray[j];
+            }
         }
         else sum = 0;
         
