@@ -19,7 +19,7 @@ public class FizzBuzzerTest {
     }
 
     @Test
-    public void executeShouldReturnBuzzIfTheNumberIsDividableBy15() {
+    public void executeShouldReturnFizzBuzzIfTheNumberIsDividableBy15() {
         assertEquals("fizzbuzz", fizzBuzzer.execute(15));
         assertEquals("fizzbuzz", fizzBuzzer.execute(30));
     }
