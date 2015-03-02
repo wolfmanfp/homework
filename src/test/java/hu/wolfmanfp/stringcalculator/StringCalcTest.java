@@ -25,7 +25,13 @@ public class StringCalcTest {
     }
     
     @Test
-    public void test1() {
+    public void emptyString() {
         assertEquals(0,calculator.add(""));
+    }
+    
+    @Test
+    public void oneNumber() {
+        assertEquals(1,calculator.add("1"));
+        assertEquals(2,calculator.add("2"));
     }
 }
