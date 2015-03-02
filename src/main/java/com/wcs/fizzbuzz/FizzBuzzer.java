@@ -9,6 +9,7 @@ public class FizzBuzzer {
         else if (number%7==0) return "wizz";
         else if (String.valueOf(number).contains("3")) return "fizz";
         else if (String.valueOf(number).contains("5")) return "buzz";
+        else if (String.valueOf(number).contains("7")) return "wizz";
         return Integer.toString(number);
     }
     
