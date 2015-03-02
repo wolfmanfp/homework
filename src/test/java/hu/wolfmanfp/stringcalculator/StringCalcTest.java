@@ -40,4 +40,10 @@ public class StringCalcTest {
         assertEquals(4, calculator.add("1,3"));
         assertEquals(14, calculator.add("10,4"));
     }
+    
+    @Test
+    public void multipleNumbers() {
+        assertEquals(10, calculator.add("1,3,1,5"));
+        assertEquals(35, calculator.add("10,4,5,12,4"));
+    }
 }
