@@ -19,6 +19,7 @@ public class StringCalcTest {
     @Before
     public void setUp() {
         calculator = new StringCalculator();
+        calculator.setDelimiter(",");
     }
     
     public StringCalcTest() {
@@ -45,5 +46,15 @@ public class StringCalcTest {
     public void multipleNumbers() {
         assertEquals(10, calculator.add("1,3,1,5"));
         assertEquals(35, calculator.add("10,4,5,12,4"));
+    }
+    
+    @Test
+    public void customDelimiters() {
+        calculator.setDelimiter(";");
+        assertEquals(3, calculator.add("1;2"));
+        calculator.setDelimiter("\n");
+        assertEquals(8, calculator.add("3\n5"));
+        calculator.setDelimiter("\t");
+        assertEquals(6, calculator.add("4\t2"));
     }
 }
