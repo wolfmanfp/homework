@@ -35,6 +35,12 @@ public class FizzBuzzerTest {
         assertEquals("fizz", fizzBuzzer.execute(138));
         assertEquals("fizz", fizzBuzzer.execute(302));
     }
+    
+    @Test
+    public void executeShouldReturnBuzzIfTheNumberContains5(){
+        assertEquals("buzz", fizzBuzzer.execute(158));
+        assertEquals("buzz", fizzBuzzer.execute(502));
+    }
 
     @Test
     public void executeShouldReturnTheSameNumberIfNoOtherRequirementIsFulfilled() {
