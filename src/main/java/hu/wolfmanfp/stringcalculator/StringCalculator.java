@@ -7,27 +7,31 @@ public class StringCalculator {
 
         if (!numbers.isEmpty()) {
             String[] input;
-            String negativeNumbers = null;
+            String negativeNumbers = "";
             int[] numberArray;
 
             input = numbers.split("[,;\\n|]");
             numberArray = new int[input.length];
             for (int i = 0; i < input.length; i++) {
                 String s = input[i];
-                if (Integer.parseInt(s) < 0) {
-                    negativeNumbers += s;
-                    if (i != input.length-1) {
-                        negativeNumbers += ", ";
+                try {
+                    if (Integer.parseInt(s) < 0) {
+                        negativeNumbers += s;
+                        if (i != input.length - 1) {
+                            negativeNumbers += ", ";
+                        }
+                    } else {
+                        numberArray[i] = Integer.parseInt(s);
                     }
-                } else {
-                    numberArray[i] = Integer.parseInt(s);
+                } catch (NumberFormatException e) {
+                    throw new NumberFormatException("Strings not allowed: "+input[i]);
                 }
             }
             for (int j = 0; j < numberArray.length; j++) {
                 sum += numberArray[j];
             }
-            if (negativeNumbers != null) {
-                throw new Exception("Negatives not allowed: "+negativeNumbers);
+            if (!negativeNumbers.isEmpty()) {
+                throw new Exception("Negatives not allowed: " + negativeNumbers);
             }
         }
 

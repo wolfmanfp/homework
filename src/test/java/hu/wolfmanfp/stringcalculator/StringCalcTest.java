@@ -73,13 +73,15 @@ public class StringCalcTest {
     @Test
     public void test4() throws Exception {
         exception.expect(Exception.class);
-        sum = calculator.add("1,3,2,-5");
+        exception.expectMessage("Negatives not allowed: -3, -5");
+        sum = calculator.add("1,-3,2,-5");
         System.out.println(sum);
     }
     
     @Test
     public void test5() throws Exception {
         exception.expect(NumberFormatException.class);
+        exception.expectMessage("Strings not allowed: lol");
         sum = calculator.add("2,lol");
         assertTrue(sum==0);        
     }
