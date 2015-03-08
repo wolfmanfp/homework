@@ -1,35 +1,38 @@
 package hu.wolfmanfp.stringcalculator;
 
 public class StringCalculator {
-    public int add(String numbers){
+
+    public int add(String numbers) throws Exception {
         int sum = 0;
-        
-        if(!numbers.isEmpty()) {
+
+        if (!numbers.isEmpty()) {
             String[] input;
+            String negativeNumbers = null;
             int[] numberArray;
-            int i = 0;
-            
+
             input = numbers.split("[,;\\n|]");
             numberArray = new int[input.length];
-            for (String s : input) {              
-                if (Integer.parseInt(s)<0) {
-//                    try {
-//                        throw new IllegalArgumentException("Negative numbers are not allowed: "+Integer.parseInt(s));
-//                    } catch (Exception ex) {
-//                        Logger.getLogger(StringCalculator.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
+            for (int i = 0; i < input.length; i++) {
+                String s = input[i];
+                if (Integer.parseInt(s) < 0) {
+                    negativeNumbers += s;
+                    if (i != input.length-1) {
+                        negativeNumbers += ", ";
+                    }
                 } else {
-                    numberArray[i]=Integer.parseInt(s);
+                    numberArray[i] = Integer.parseInt(s);
                 }
-                i++;
             }
-            i=0;
             for (int j = 0; j < numberArray.length; j++) {
-		sum+=numberArray[j];
+                sum += numberArray[j];
+            }
+            if (negativeNumbers != null) {
+                throw new Exception("Negatives not allowed: "+negativeNumbers);
             }
         }
-        else sum = 0;
-        
+
         return sum;
+
     }
+
 }

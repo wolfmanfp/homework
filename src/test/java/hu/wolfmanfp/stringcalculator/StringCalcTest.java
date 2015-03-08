@@ -72,14 +72,16 @@ public class StringCalcTest {
     
     @Test
     public void test4() throws Exception {
-//        exception.expect(IllegalArgumentException.class);
+        exception.expect(Exception.class);
         sum = calculator.add("1,3,2,-5");
+        System.out.println(sum);
     }
     
     @Test
     public void test5() throws Exception {
+        exception.expect(NumberFormatException.class);
         sum = calculator.add("2,lol");
-        assertTrue(sum==2);        
+        assertTrue(sum==0);        
     }
     
 }
