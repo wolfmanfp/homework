@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StringCalculator {
+public class StringCalculator2 {
     public String delimiter;
 
-    public StringCalculator() {
+    public StringCalculator2() {
     }
     
     public int add(String numbers) throws Exception{

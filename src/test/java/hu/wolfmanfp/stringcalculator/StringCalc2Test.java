@@ -15,19 +15,19 @@ import org.junit.rules.ExpectedException;
  *
  * @author wolfman
  */
-public class StringCalcTest {
-    StringCalculator calculator;
+public class StringCalc2Test {
+    StringCalculator2 calculator;
     
     @Rule
     public ExpectedException expected = ExpectedException.none();
     
     @Before
     public void setUp() {
-        calculator = new StringCalculator();
+        calculator = new StringCalculator2();
         calculator.setDelimiter(",");
     }
     
-    public StringCalcTest() {
+    public StringCalc2Test() {
     }
     
     @Test
