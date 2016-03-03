@@ -1,7 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+
 * {
     border: 0;
     padding: 0;
     margin: 0;
+    font-family: 'Share Tech Mono';
 }
 
 td {
@@ -12,23 +15,42 @@ td {
 
 .black {
     background-color: black;
+    color: transparent;
 }
 
 .red {
     background-color: red;
+    color: transparent;
 }
 
 .green {
     background-color: green;
+    color: transparent;
 }
 
 .blue {
     background-color: blue;
+    color: transparent;
 }
 
 #colors div {
-    width: 66px;
+    width: 55px;
     height: 33px;
+    margin: 2px;
     border: 1px solid black;
     display: inline-block;
+    cursor: pointer;
+}
+
+#buttons div {
+    cursor: pointer;
+    border: 1px solid black;
+    color: white;
+    background-color: teal;
+    display: inline-block;
+    width: 98px;
+    height: 20px;
+    margin: 2px;
+    text-align: center;
+    padding: 7px;
 }
