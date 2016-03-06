@@ -9,14 +9,14 @@ function createTable() {
         var $tr = $('<tr>');
         for (j = 0; j < 10; j++) {
             var $td = $('<td>').click(
-                function(event) {
+                function() {
                     $(this).toggleClass(color);
                 }
             );
             $tr.append($td);
-        };
+        }
         $table.append($tr);
-    };
+    }
     $tableholder.append($table);
 }
 
@@ -30,7 +30,7 @@ function changeColor() {
 
 function addColor(colorName) {
     return $('<div>').addClass(colorName).click(
-        function(event) {
+        function() {
             color = colorName;
         }
     );
@@ -56,7 +56,7 @@ function loadButtons() {
         ));
 }
 
-function savePicture(picture){
+function savePicture(){
     var picture = [];
     $('#tableholder tr').each(function() {
         var td = [];
@@ -71,16 +71,40 @@ function savePicture(picture){
         picture.push(td);
     });
     var pictureJSON = JSON.stringify(picture);
-    console.log(pictureJSON);
-    localStorage.setItem('picture', picture);
+    localStorage.setItem('picture', pictureJSON);
 }
 
 function loadPicture() {
+    var picture;
+    var pictureJSON = localStorage.getItem('picture');
+    try {
+        picture = JSON.parse(pictureJSON);
+    } catch (e) {
+        picture = null;
+    }
+    var $tableholder = $('#tableholder');
 
+    $tableholder.empty();
+    for (var i = 0; i < picture.length; i++) {
+        var $tr = $('<tr>');
+        var row = picture[i];
+
+        for (var j = 0; j < row.length; j++) {
+            var color = row[j];
+            var $td = $('<td>');
+            if (color == 'r') $td.addClass('red');
+            else if (color == 'g') $td.addClass('green');
+            else if (color == 'b') $td.addClass('blue');
+            else if (color == 'k') $td.addClass('black');
+            $tr.append($td);
+        }
+
+        $tableholder.append($tr);
+    }
 }
 
 window.onload = function(){
     createTable();
     changeColor();
     loadButtons();
-}
+};
