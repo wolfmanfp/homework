@@ -38,6 +38,9 @@ function loadColors() {
     $colors.append(newColor('red'));
     $colors.append(newColor('green'));
     $colors.append(newColor('blue'));
+    $colors.append(newColor('cyan'));
+    $colors.append(newColor('magenta'));
+    $colors.append(newColor('yellow'));
 }
 
 function newColor(colorName) {
@@ -65,12 +68,7 @@ function savePicture(){
     $('#tableholder tr').each(function() {
         var td = [];
         $(this).children().each(function(){
-            var className = $(this).attr('class');
-            if (className == 'red') td.push("r");
-            else if (className == 'green') td.push("g");
-            else if (className == 'blue') td.push("b");
-            else if (className == 'black') td.push("k");
-            else td.push('');
+            td.push($(this).attr('class'));
         });
         picture.push(td);
     });
@@ -91,12 +89,7 @@ function loadPicture() {
 
             for (var j = 0; j < row.length; j++) {
                 var cellColor = row[j];
-                var $td = newTableCell();
-                if (cellColor == 'r') $td.addClass('red');
-                else if (cellColor == 'g') $td.addClass('green');
-                else if (cellColor == 'b') $td.addClass('blue');
-                else if (cellColor == 'k') $td.addClass('black');
-                $tr.append($td);
+                $tr.append(newTableCell().addClass(cellColor));
             }
 
             $table.append($tr);

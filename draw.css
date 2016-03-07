@@ -44,6 +44,9 @@ td {
 .red {background-color: red;}
 .green {background-color: green;}
 .blue {background-color: blue;}
+.cyan {background-color: cyan;}
+.magenta {background-color: magenta;}
+.yellow {background-color: yellow;}
 
 #colors {
     width: 328px;
