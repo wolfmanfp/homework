@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 
 namespace Animals
 {
@@ -7,7 +6,7 @@ namespace Animals
 	{
 		public bool LakasbanTarthato { get; private set; }
 		public Kutya(Meret meret, string szin, bool lakasbanTarthato)
-			: base(meret, szin, 4, false, true, "Vau!")
+			: base(meret, szin, 4, false, true, "ugatás")
 		{
 			LakasbanTarthato = lakasbanTarthato;
 		}

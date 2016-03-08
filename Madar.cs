@@ -1,12 +1,15 @@
-﻿
-using System;
+﻿using System;
 
 namespace Animals
 {
-	public class Madar
+	public class Madar: Allat
 	{
-		public Madar()
+		public bool Ragadozo { get; private set; }
+		public bool KalitkabanTarthato { get; private set; }
+		public Madar(Meret meret, string szin, bool ragadozo, bool kalitkabanTarthato):base(meret, szin, 2, true, false, "csipogás")
 		{
+			Ragadozo = ragadozo;
+			KalitkabanTarthato = kalitkabanTarthato;
 		}
 	}
 }

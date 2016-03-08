@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Allat.cs" />
     <Compile Include="Hal.cs" />
+    <Compile Include="Kigyo.cs" />
     <Compile Include="Kutya.cs" />
     <Compile Include="Madar.cs" />
     <Compile Include="Program.cs" />
