@@ -13,7 +13,8 @@ namespace Animals
 		public bool TudUszni { get; private set; }
 		public string Hang { get; private set; }
 		
-		public Allat(Meret meret, string szin, int labak, bool tudRepulni, bool tudUszni, string hang)
+		public Allat(Meret meret, string szin, int labak, 
+		             bool tudRepulni, bool tudUszni, string hang)
 		{
 			AllatMerete = meret;
 			Szin = szin;
@@ -23,5 +24,10 @@ namespace Animals
 			Hang = hang;
 		}
 		
+		
+		public override string ToString()
+		{
+			return "Mérete: "+AllatMerete+", színe: "+Szin;
+		}
 	}
 }

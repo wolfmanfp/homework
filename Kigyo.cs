@@ -18,5 +18,12 @@ namespace Animals
 			if(elsodleges != 0) return elsodleges;
 			return AllatMerete.CompareTo(masik.AllatMerete);
 		}
+		
+		public override string ToString()
+		{
+			return "Kígyó - "+base.ToString()+", "
+				+Merges? "mérges":"nem mérges"+", "
+				+TudUszni? "tud úszni":"nem tud úszni";
+		}
 	}
 }
