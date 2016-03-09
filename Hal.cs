@@ -14,8 +14,9 @@ namespace Animals
 		
 		public override string ToString()
 		{
+			string edesvizi_e = Edesvizi? "édesvízi":"tengeri";
 			return "Mérete: "+AllatMerete+", "
-				+Edesvizi? "édesvízi":"tengeri";
+				+edesvizi_e;
 		}
 	}
 }

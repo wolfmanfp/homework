@@ -16,9 +16,11 @@ namespace Animals
 		
 		public override string ToString()
 		{
+			string tud_e_repulni = TudRepulni? "tud repülni":"nem tud repülni";
+			string kalitkaInfo = KalitkabanTarthato? "kalitkában tartható":"nem tartható kalitkában";
 			return "Madár - "+base.ToString()+", "
-				+TudRepulni? "tud repülni":"nem tud repülni"+", "
-				+KalitkabanTarthato? "kalitkában tartható":"nem tartható kalitkában";
+				+tud_e_repulni+", "
+				+kalitkaInfo;
 		}
 	}
 }

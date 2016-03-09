@@ -4,7 +4,7 @@ namespace Animals
 {
 	public class Allat
 	{
-		public enum Meret {XS, S, M, L, XL}
+		public enum Meret : int {XS, S, M, L, XL}
 		
 		public Meret AllatMerete { get; private set; }
 		public string Szin { get; private set; }

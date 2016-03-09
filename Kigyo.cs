@@ -15,15 +15,17 @@ namespace Animals
 			Kigyo masik = obj as Kigyo;
 
 			int elsodleges = Merges.CompareTo(masik.Merges);
-			if(elsodleges != 0) return elsodleges;
+			if(elsodleges != 0) return elsodleges*(-1);
 			return AllatMerete.CompareTo(masik.AllatMerete);
 		}
 		
 		public override string ToString()
 		{
+			string merges_e = Merges? "mérges":"nem mérges";
+			string tud_e_uszni = TudUszni? "tud úszni":"nem tud úszni";
 			return "Kígyó - "+base.ToString()+", "
-				+Merges? "mérges":"nem mérges"+", "
-				+TudUszni? "tud úszni":"nem tud úszni";
+				+merges_e+", "
+				+tud_e_uszni;
 		}
 	}
 }

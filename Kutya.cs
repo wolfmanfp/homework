@@ -13,8 +13,9 @@ namespace Animals
 		
 		public override string ToString()
 		{
+			string lakasban_tarthato_e = LakasbanTarthato? "lakásban tartható":"lakásban nem tartható";
 			return "Kutya - "+base.ToString()+", "
-				+LakasbanTarthato? "lakásban tartható":"lakásban nem tartható";
+				+lakasban_tarthato_e;
 		}
 
 	}
