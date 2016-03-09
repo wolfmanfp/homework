@@ -53,6 +53,7 @@
     <Compile Include="Kigyo.cs" />
     <Compile Include="Kutya.cs" />
     <Compile Include="Madar.cs" />
+    <Compile Include="Mocker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
