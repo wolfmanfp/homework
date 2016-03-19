@@ -1,5 +1,7 @@
 var color = 'black';
 var cellNumber = 10;
+var appName = "wolfmanfp_draw";
+var fileName = "myPicture";
 
 function createTable() {
     var $tableholder = $('#tableholder');
@@ -56,7 +58,7 @@ function loadButtons() {
         savePicture();
     });
     $('#load').click(function(){
-        loadPicture();
+        loadPictureREST();
     });
     $('#clear').click(function(){
         clearPicture();
@@ -73,11 +75,32 @@ function savePicture(){
         picture.push(td);
     });
     var pictureJSON = JSON.stringify(picture);
+    savePictureREST(pictureJSON);
+}
+
+function savePictureLS(pictureJSON){
     localStorage.setItem('picture', pictureJSON);
 }
 
-function loadPicture() {
-    var pictureJSON = localStorage.getItem('picture');
+function savePictureREST(pictureJSON) {
+    $.post(
+        "http://music.elvis.hu/drawapi/store.php",
+        {
+            name: fileName,
+            app: appName,
+            data: pictureJSON
+        },
+        function(response) {
+            if(response.state == 'ok') {
+                alert('The picture has been saved.');
+            } else {
+                alert('It doesn\'t work! :(');
+            }
+        }
+    );
+}
+
+function loadPicture(pictureJSON) {
     var $table = $('#tableholder table');
     try {
         var picture = JSON.parse(pictureJSON);
@@ -97,6 +120,19 @@ function loadPicture() {
     } catch (e) {
         alert("You didn't save a picture yet. :(")
     }
+}
+
+function loadPictureLS() {
+    var pictureJSON = localStorage.getItem('picture');
+    loadPicture(pictureJSON);
+}
+
+function loadPictureREST() {
+    $.get("http://music.elvis.hu/drawapi/get.php?app="+appName+"&name="+fileName,
+        function(data){
+            var pictureJSON = data.data;
+            loadPicture(pictureJSON);
+        });
 }
 
 function clearPicture() {
