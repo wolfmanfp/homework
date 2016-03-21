@@ -6,3 +6,7 @@
     margin: 0;
     font-family: 'Share Tech Mono', sans-serif;
 }
+
+#game {
+    display: none;
+}
