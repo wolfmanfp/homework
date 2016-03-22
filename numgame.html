@@ -8,16 +8,21 @@
     <link rel="stylesheet" href="numgame.css">
 </head>
 <body>
-    <h1>numgame.exe</h1>
-    <div id="intro">
+    <header class="whiteborder">
+        <h1>numgame.exe</h1>
+    </header>
+    <div id="intro" class="whiteborder">
         I picked a number between 1 and 100. You have to guess that number.<br>
         Made by Péter Farkas in 2016.<br>
-        <a class="start" href="#">Start</a>
+        <p id="start"><a class="get_token" href="#">Start</a></p>
     </div>
-    <p id="status">&nbsp;</p>
-    <form id="game">
-        <input id="guess" type="text" placeholder="Enter your guess"><br>
-        <input type="submit">
-    </form>
+    <div id="form" class="whiteborder">
+        <form id="game">
+            <input type="text" id="guess" autocomplete="off" placeholder="Enter your guess"><br>
+            <input type="submit">
+        </form>
+        <p id="status">&nbsp;<br></p>
+        <div class="get_token">New Game</div>
+    </div>
 </body>
 </html>

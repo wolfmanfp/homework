@@ -7,6 +7,68 @@
     font-family: 'Share Tech Mono', sans-serif;
 }
 
-#game {
+body {background-color: #000020;}
+
+#form, div.get_token {
     display: none;
+}
+
+.whiteborder {
+    border: 1px solid #ffffee;
+    width: 348px;
+    margin: 10px auto;
+    color: #ffffee;
+}
+
+header {
+    height: 50px;
+}
+
+header h1 {
+    line-height: 50px;
+    text-align: center;
+}
+
+#intro, #form {
+    width: 338px;
+    padding: 5px;
+}
+
+.get_token {
+    text-align: center;
+    cursor: pointer;
+    background-color: #ffffee;
+    color: #000020;
+}
+
+.get_token:hover, input[type="submit"]:hover {
+    background-color: #000020;
+    color: #ffffee;
+}
+
+a.get_token {text-decoration: none;}
+
+#start {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#guess {
+    background-color: #000020;
+    color: #ffffee;
+    font-size: medium;
+}
+
+input[type="submit"] {
+    background-color: #ffffee;
+    color: #000020;
+    display: block;
+    margin: 10px auto 0 auto;
+    font-size: medium;
+    cursor: pointer;
+}
+
+div.get_token {
+    margin: 10px auto 0 auto;
+    width: 80px;
 }
