@@ -1,12 +1,14 @@
 var canvas = document.getElementById("clock");
 var ctx = canvas.getContext("2d");
-var date = new Date;
+var date;
 var pi = Math.PI;
 var w = canvas.width;
 var h = canvas.height;
 var angle;
 
 function drawClock() {
+    date = new Date();
+
     ctx.clearRect(0,0,w,h);
 
     ctx.beginPath();
@@ -44,31 +46,35 @@ function drawMarks() {
 
 function drawHours() {
     var hours = date.getHours();
+    var minutes = date.getMinutes();
+    angle = 2*pi*(hours*5+minutes/60*5)/60 - 2*pi/4;
     ctx.beginPath();
-    ctx.moveTo(250,250);
-    ctx.lineTo(125,250);
+    ctx.moveTo(w/2,h/2);
+    ctx.lineTo(w/2+Math.cos(angle)*125, h/2+Math.sin(angle)*125);
     ctx.lineWidth = 4;
     ctx.stroke();
 }
 
 function drawMinutes() {
     var minutes = date.getMinutes();
+    angle = 2*pi*minutes/60 - 2*pi/4;
     ctx.beginPath();
-    ctx.moveTo(250,250);
-    ctx.lineTo(250,90);
+    ctx.moveTo(w/2,h/2);
+    ctx.lineTo(w/2+Math.cos(angle)*170, h/2+Math.sin(angle)*170);
     ctx.lineWidth = 4;
     ctx.stroke();
 }
 
 function drawSeconds() {
     var seconds = date.getSeconds();
+    angle = 2*pi*seconds/60 - 2*pi/4;
     ctx.beginPath();
-    ctx.moveTo(250,250);
-    ctx.lineTo(375,375);
+    ctx.moveTo(w/2,h/2);
+    ctx.lineTo(w/2+Math.cos(angle)*190, h/2+Math.sin(angle)*190);
     ctx.lineWidth = 1;
     ctx.stroke();
 }
 
 window.onload = function() {
-    setInterval(drawClock(), 1000);
+    setInterval(drawClock, 500);
 };
