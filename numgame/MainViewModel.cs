@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows.Input;
 
 namespace numgame
@@ -54,12 +55,16 @@ namespace numgame
             }
         }
 
-        private void Registration()
+        private async void Registration()
         {
             var request = new RestRequest("register", Method.GET);
-            IRestResponse response = client.Execute(request);
+            var cancellationTokenSource = new CancellationTokenSource();
+            IRestResponse response =
+                await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+
             RegistrationResponse rResponse = 
                 JsonConvert.DeserializeObject<RegistrationResponse>(response.Content);
+
             string status = rResponse.Status;
             if (status == "ok")
             {
@@ -70,8 +75,50 @@ namespace numgame
 
         private async void Guess()
         {
-            Result = token;
+            var request = new RestRequest("guess", Method.POST);
+            request.AddParameter("token", token);
+            request.AddParameter("value", value);
 
+            int iValue;
+            bool guessIsNumber = int.TryParse(value, out iValue);
+
+            if (guessIsNumber && iValue > 0 && iValue < 100)
+            {
+                var cancellationTokenSource = new CancellationTokenSource();
+                IRestResponse response =
+                    await client.ExecuteTaskAsync(request, cancellationTokenSource.Token);
+
+                GuessResponse gResponse =
+                    JsonConvert.DeserializeObject<GuessResponse>(response.Content);
+
+                string status = gResponse.Status;
+                switch (status)
+                {
+                    case "ok":
+                        string answer = gResponse.Answer;
+                        switch (answer)
+                        {
+                            case "toolow":
+                                Result = "Too low!";
+                                break;
+                            case "toohigh":
+                                Result = "Too high!";
+                                break;
+                            case "win":
+                                var guesses = gResponse.Guesses;
+                                Result = "You win! Number of guesses: " + guesses;
+                                break;
+                        }
+                        break;
+                    case "invalid token":
+                        Result = "Invalid token!";
+                        break;
+                }
+            }
+            else
+            {
+                Result = "Invalid number!";
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
