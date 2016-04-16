@@ -12,7 +12,7 @@ namespace numgame
 
         private string token;
         private RestClient client;
-        public static ICommand SendCommand { get; set; }
+        public ICommand SendCommand { get; set; }
 
         private string value;
         public string Value

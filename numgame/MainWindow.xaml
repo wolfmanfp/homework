@@ -50,7 +50,6 @@
                 Width="75"
                 IsDefault="True"
                 Click="send_Click"
-                KeyDown="send_KeyDown"
                 Command="{Binding SendCommand}">
         </Button>
         
