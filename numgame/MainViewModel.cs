@@ -12,7 +12,7 @@ namespace numgame
 
         private string token;
         private RestClient client;
-        public ICommand SendCommand { get; set; }
+        public static ICommand SendCommand { get; set; }
 
         private string value;
         public string Value
@@ -79,7 +79,7 @@ namespace numgame
         {
             var request = new RestRequest("guess", Method.POST);
             request.AddParameter("token", token);
-            request.AddParameter("value", value);
+            request.AddParameter("value", Value);
 
             int iValue;
             bool guessIsNumber = int.TryParse(value, out iValue);
@@ -92,6 +92,8 @@ namespace numgame
 
                 GuessResponse gResponse =
                     JsonConvert.DeserializeObject<GuessResponse>(response.Content);
+
+                Value = string.Empty;
 
                 string status = gResponse.Status;
                 switch (status)
@@ -109,6 +111,7 @@ namespace numgame
                             case "win":
                                 var guesses = gResponse.Guesses;
                                 Result = "You win! Number of guesses: " + guesses;
+                                token = null;
                                 break;
                         }
                         break;

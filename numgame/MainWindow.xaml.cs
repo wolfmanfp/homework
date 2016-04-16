@@ -12,5 +12,11 @@ namespace numgame
             viewModel = new MainViewModel();
             DataContext = viewModel;
         }
+
+        private void send_Click(object sender, RoutedEventArgs e)
+        {
+            value.Focus();
+        }
+
     }
 }
