@@ -11,7 +11,7 @@ namespace numgame
         private const string URL = "http://api.gamer365.hu/numgame";
 
         private string token;
-        private RestSharp.RestClient client;
+        private RestClient client;
         public ICommand SendCommand { get; set; }
 
         private string value;
@@ -39,8 +39,10 @@ namespace numgame
         public MainViewModel()
         {
             Value = "";
-            Result = "I picked a number between 1 and 100. Enter your guess above.";
+            Result = "I picked a number between 1 and 100. Enter your guess above.\n" +
+                "Made by Péter Farkas in 2016.";
             client = new RestClient(URL);
+            SendCommand = new CommandBase(Send);
         }
 
         public void Send()
