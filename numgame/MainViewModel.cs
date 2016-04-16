@@ -1,11 +1,13 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using RestSharp;
+using System.ComponentModel;
 using System.Windows.Input;
 
 namespace numgame
 {
     class MainViewModel : INotifyPropertyChanged
     {
-        private const string Url = "http://api.gamer365.hu/numgame";
+        private const string URL = "http://api.gamer365.hu/numgame";
 
         private string token;
         private RestSharp.RestClient client;
@@ -37,28 +39,39 @@ namespace numgame
         {
             Value = "";
             Result = "I picked a number between 1 and 100. Enter your guess above.";
-            client = new RestSharp.RestClient(Url);
+            client = new RestClient(URL);
         }
 
         public void Send()
         {
             if (token == null)
             {
-                SendRegistration();
+                Registration();
             }
             else
             {
-
+                Guess();
             }
         }
 
-        private void SendRegistration()
+        private void Registration()
         {
-            var request = new RestSharp.RestRequest("register", RestSharp.Method.GET);
+            var request = new RestRequest("register", Method.GET);
+            IRestResponse response = client.Execute(request);
+            RegistrationResponse rResponse = 
+                JsonConvert.DeserializeObject<RegistrationResponse>(response.Content);
+            string status = rResponse.Status;
+            if (status == "ok")
+            {
+                token = rResponse.Token;
+                Guess();
+            }
+        }
 
-            RestSharp.IRestResponse response = client.Execute(request);
+        private async void Guess()
+        {
+            Result = token;
 
-            Result = response.Content;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
