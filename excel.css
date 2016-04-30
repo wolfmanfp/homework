@@ -1,0 +1,25 @@
+*{font-family:arial; outline:none;}
+
+table.excel input{width:100px; border:0;margin:0;padding:2px 4px; text-align:right;outline:none;border:2px solid white;display:block;}
+table.excel input:focus{border-color:orange;}
+table.excel input.barover{
+    background-color:yellow;border-color:orange;
+}
+table.excel{background-color:#cccccc; font-family:arial;}
+table.excel td{background-color:#ffffff;padding:0;}
+table.excel td.null{background-color:#666666;}
+table.excel td.head{background-color:#999999;padding:2px 4px; text-align:center;cursor:pointer;}
+table.excel td.sum{
+			text-align: right;
+			font-weight: bold;
+			padding: 2px 5px;
+		}
+
+
+div.graph{position:relative; overflow:hidden;padding:5px; background-color:black;margin-top:5px;}
+div.graph div{
+    float:left;
+    width:20px;
+    background-color: orange;
+    margin-right:5px;
+}
