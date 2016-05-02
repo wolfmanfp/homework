@@ -172,7 +172,7 @@ function graph($table) {
                 $(this).prop('input').addClass('barover'); // kijelöljük a hozzá kapcsolt inputot
             }).mouseout(function() { // amikor elmozgatjuk az adott elem fölül az egeret
                 $(this).prop('input').removeClass('barover'); // levesszük a kapcsolt inputról a kijelölést
-            }).click(function(event) { // kattintáskor esetén
+            }).click(function(event) { // kattintásesetén
                 var value = 100 - event.offsetY; // kiszámoljuk az elem magasságát a kattintás pozíciója alapján
 
                 // kiszámoljuk az adott értékhez tartozó szín r, g, b komponenseit
