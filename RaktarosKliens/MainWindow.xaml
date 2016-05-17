@@ -8,5 +8,51 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Username" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding LoginName}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBlock Text="Password" HorizontalAlignment ="Center" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding PassWord}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <Button MinWidth="90" HorizontalAlignment="Center">
+                <TextBlock Text="Login" Padding="2"/>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Productname" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding ProductName}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBlock Text="Number of productpieces" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding ProductPiece}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBlock Text="Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBox Text="{Binding LocationID}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <Button MinWidth="90" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <TextBlock Text="Get Products"  HorizontalAlignment="Center" Padding="2"/>
+                </Button>
+                <Button MinWidth="90" HorizontalAlignment="Center">
+                    <TextBlock Text="Add Products"  HorizontalAlignment="Center" Padding="2"/>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+            <TextBlock Text="Productname" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding ProductName}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBlock Text="Number of productpieces" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding ProductPiece}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBlock Text="Old Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding OldLocationID}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBlock Text="New Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Text="{Binding NewLocationID}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <Button MinWidth="90" HorizontalAlignment="Center">
+                <TextBlock x:Name="btnText" Text="Transfer Products" HorizontalAlignment="Center" Padding="2"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
