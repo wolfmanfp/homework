@@ -43,8 +43,6 @@
             <StackPanel Grid.Column="2">
             <TextBlock Text="Productname" HorizontalAlignment="Center" Margin="0,0,0,5"/>
             <TextBox Text="{Binding ProductName}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-            <TextBlock Text="Number of productpieces" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-            <TextBox Text="{Binding ProductPiece}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
             <TextBlock Text="Old Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
             <TextBox Text="{Binding OldLocationID}" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
             <TextBlock Text="New Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
