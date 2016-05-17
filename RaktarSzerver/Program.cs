@@ -10,6 +10,7 @@ namespace RaktarSzerver
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("valamiu");
         }
     }
 }
