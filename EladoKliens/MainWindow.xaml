@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="135" Margin="5,0,0,0">
             <Label x:Name="label" Content="Felhasználónév" />
-            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text=""/>
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="{Binding UserName}"/>
             <Label x:Name="label1" Content="Jelszó"/>
             <PasswordBox x:Name="passwordBox" MaxLength="8"/>
             <Button x:Name="button" Content="Button" Margin="5,10,5,0"/>
