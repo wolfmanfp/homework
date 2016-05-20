@@ -23,7 +23,7 @@ namespace Animals
 		{
 			string merges_e = Merges? "mérges":"nem mérges";
 			string tud_e_uszni = TudUszni? "tud úszni":"nem tud úszni";
-			return "Kígyó - "+base.ToString()+", "
+			return base.ToString()+", "
 				+merges_e+", "
 				+tud_e_uszni;
 		}

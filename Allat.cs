@@ -24,10 +24,21 @@ namespace Animals
 			Hang = hang;
 		}
 		
-		
 		public override string ToString()
 		{
-			return "Mérete: "+AllatMerete+", színe: "+Szin;
+            return Tulajdonsagok();
 		}
+
+        public string Tulajdonsagok()
+        {
+            return "Típusa: " + this.GetType().Name.ToLower() +
+                ", mérete: " + AllatMerete + ", színe: " + Szin;
+        }
+
+        public string AllatHang()
+        {
+            return "Típusa: " + this.GetType().Name.ToLower() +
+                ", általa kiadott hang: " + Hang;
+        }
 	}
 }

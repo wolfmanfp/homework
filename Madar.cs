@@ -18,7 +18,7 @@ namespace Animals
 		{
 			string tud_e_repulni = TudRepulni? "tud repülni":"nem tud repülni";
 			string kalitkaInfo = KalitkabanTarthato? "kalitkában tartható":"nem tartható kalitkában";
-			return "Madár - "+base.ToString()+", "
+			return base.ToString()+", "
 				+tud_e_repulni+", "
 				+kalitkaInfo;
 		}

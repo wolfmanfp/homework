@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Animals
+﻿namespace Animals
 {
-	public class Hal: Allat
+    public class Hal: Allat
 	{
 		public bool Edesvizi { get; private set; }
 		
