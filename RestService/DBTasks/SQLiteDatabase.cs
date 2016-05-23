@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using RestService.Model;
 using System.Data;
-using System.Data.SqlClient;
+using System.Data.SQLite;
 
 namespace RestService.DBTasks
 {
-    public class MSSQLDatabase : IDatabase
+    public class SQLiteDatabase : IDatabase
     {
-        private SqlConnection connection;
+        private SQLiteConnection connection;
 
-        public MSSQLDatabase()
+        public SQLiteDatabase()
         {
-            connection = MSSQLConnection.Instance.GetConnection();
+            connection = SQLiteConn.Instance.GetConnection();
         }
 
         public bool AddProduct(string productName, int locID)
         {
-            SqlCommand command = new SqlCommand(
-                "INSERT INTO Products(Name, LocationID) VALUES (@PName, @LocID);", 
+            SQLiteCommand command = new SQLiteCommand(
+                "INSERT INTO Products(Name, LocationID) VALUES (@PName, @LocID);",
                 connection);
-            command.Parameters.Add("@PName", SqlDbType.VarChar).Value = productName;
-            command.Parameters.Add("@LocID", SqlDbType.Int).Value = locID;
+            command.Parameters.Add("@PName", DbType.String).Value = productName;
+            command.Parameters.Add("@LocID", DbType.Int32).Value = locID;
 
             try
             {
@@ -48,13 +48,14 @@ namespace RestService.DBTasks
 
         public bool Authenticate(string user, string pass)
         {
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT Password FROM Users WHERE Name = @Name";
-            command.Connection = connection;
-            command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = user;
+            SQLiteCommand command = new SQLiteCommand(
+                "SELECT Password FROM Users WHERE Name = @Name;",
+                connection);
+            command.Parameters.Add("@Name", DbType.String).Value = user;
+
             try
             {
-                connection.Open();
+                command.Connection.Open();
                 string passw = (string)command.ExecuteScalar();
 
                 if (passw == pass)
@@ -72,16 +73,16 @@ namespace RestService.DBTasks
             }
             finally
             {
-                connection.Close();
+                command.Connection.Close();
             }
         }
 
         public bool CheckProduct(string productName)
         {
-            SqlCommand command = new SqlCommand(
+            SQLiteCommand command = new SQLiteCommand(
                 "SELECT Name FROM Products WHERE Name = @Name",
                 connection);
-            command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = productName;
+            command.Parameters.Add("@Name", DbType.String).Value = productName;
 
             try
             {
@@ -109,10 +110,10 @@ namespace RestService.DBTasks
 
         public bool DeleteProduct(int productID)
         {
-            SqlCommand command = new SqlCommand(
-                "DELETE FROM Products WHERE ID = @ProductID;",
-                connection);
-            command.Parameters.Add("@ProductID", SqlDbType.Int).Value = productID;
+            SQLiteCommand command = new SQLiteCommand(
+               "DELETE FROM Products WHERE ID = @ProductID;",
+               connection);
+            command.Parameters.Add("@ProductID", DbType.Int32).Value = productID;
 
             try
             {
@@ -140,19 +141,19 @@ namespace RestService.DBTasks
         public List<Location> Locations()
         {
             List<Location> locations = new List<Location>();
-            SqlCommand command = new SqlCommand(
+            SQLiteCommand command = new SQLiteCommand(
                 "SELECT * FROM Locations;",
                 connection);
-            
+
             try
             {
                 command.Connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     Location location = new Location();
-                    location.ID = (int) reader["ID"];
-                    location.LocationName = (string) reader["LocationName"];
+                    location.ID = (int)reader["ID"];
+                    location.LocationName = (string)reader["LocationName"];
                     locations.Add(location);
                 }
                 return locations;
@@ -170,20 +171,20 @@ namespace RestService.DBTasks
         public List<Product> Products()
         {
             List<Product> products = new List<Product>();
-            SqlCommand command = new SqlCommand(
+            SQLiteCommand command = new SQLiteCommand(
                 "SELECT * FROM Products;",
                 connection);
 
             try
             {
                 command.Connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     Product product = new Product();
-                    product.ID = (int) reader["ID"];
-                    product.Name = (string) reader["Name"];
-                    product.LocationID = (int) reader["LocationID"];
+                    product.ID = (int)reader["ID"];
+                    product.Name = (string)reader["Name"];
+                    product.LocationID = (int)reader["LocationID"];
                     products.Add(product);
                 }
                 return products;
@@ -201,15 +202,15 @@ namespace RestService.DBTasks
         public List<Product> ProductsByLocation(int locID)
         {
             List<Product> products = new List<Product>();
-            SqlCommand command = new SqlCommand(
+            SQLiteCommand command = new SQLiteCommand(
                 "SELECT * FROM Products WHERE LocationID = @LocID;",
                 connection);
-            command.Parameters.Add("@LocID", SqlDbType.Int).Value = locID;
+            command.Parameters.Add("@LocID", DbType.Int32).Value = locID;
 
             try
             {
                 command.Connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     Product product = new Product();
@@ -232,11 +233,11 @@ namespace RestService.DBTasks
 
         public bool TransferProduct(int productID, int newLocationID)
         {
-            SqlCommand comm = new SqlCommand();
-            comm.Connection = connection;
-            comm.CommandText = "UPDATE Products SET LocationID = @NewLocID WHERE ID = @ID";
-            comm.Parameters.Add("@NewLocID", SqlDbType.Int).Value = newLocationID;
-            comm.Parameters.Add("@ID", SqlDbType.Int).Value = productID;
+            SQLiteCommand comm = new SQLiteCommand(
+                "UPDATE Products SET LocationID = @NewLocID WHERE ID = @ID;",
+                connection);
+            comm.Parameters.Add("@NewLocID", DbType.Int32).Value = newLocationID;
+            comm.Parameters.Add("@ID", DbType.Int32).Value = productID;
             try
             {
                 comm.Connection.Open();
@@ -244,7 +245,8 @@ namespace RestService.DBTasks
                 if (res == 1)
                 {
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
                 }
