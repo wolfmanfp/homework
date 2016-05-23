@@ -42,37 +42,39 @@ namespace RaktarosKliens
 
         private void btnGetProducts_Click(object sender, RoutedEventArgs e)
         {
-            if (txtProductNameLeft.Text == "" || txtProductPiecesLeft.Text == "" || txtLocationLeft.Text == "")
+            if (txtProductIdLeft.Text == "" || txtProductPiecesLeft.Text == "" || txtLocationLeft.Text == "")
             {
                 MessageBox.Show("Minden mezőt ki kell tölteni!");
             }
             else
             {
-                MessageBox.Show(txtProductNameLeft.Text + " " + txtProductPiecesLeft.Text + " " + txtLocationLeft.Text);
+                MessageBox.Show(txtProductIdLeft.Text + " " + txtProductPiecesLeft.Text + " " + txtLocationLeft.Text);
             }
         }
 
         private void btnAddProducts_Click(object sender, RoutedEventArgs e)
         {
-            if (txtProductNameLeft.Text == "" || txtProductPiecesLeft.Text == "" || txtLocationLeft.Text == "")
+            if (txtProductIdLeft.Text == "" || txtProductPiecesLeft.Text == "" || txtLocationLeft.Text == "")
             {
                 MessageBox.Show("Minden mezőt ki kell tölteni!");
             }
             else
             {
-                MessageBox.Show(txtProductNameLeft.Text + " " + txtProductPiecesLeft.Text + " " + txtLocationLeft.Text);
+                int valami = int.Parse(txtProductIdLeft.Text);
+                
+                MessageBox.Show(txtProductIdLeft.Text + " " + txtProductPiecesLeft.Text + " " + txtLocationLeft.Text);
             }
         }
 
         private void btnTransferProducts_Click(object sender, RoutedEventArgs e)
         {
-            if (txtProductNameRight.Text == "" || txtNewLocationRight.Text == "" || txtOldLocationRight.Text == "")
+            if (txtProductIdRight.Text == "" || txtNewLocationRight.Text == "")
             {
                 MessageBox.Show("Minden mezőt ki kell tölteni!");
             }
             else
             {
-                MessageBox.Show(txtProductNameRight.Text + " " + txtNewLocationRight.Text + " " + txtOldLocationRight.Text);
+                MessageBox.Show(txtProductIdRight.Text + " " + txtNewLocationRight.Text);
             }
         }
     }

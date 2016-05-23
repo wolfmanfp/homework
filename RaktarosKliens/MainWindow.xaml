@@ -25,8 +25,8 @@
         </StackPanel>
 
         <StackPanel Name="sp1" Visibility ="Collapsed" Grid.Column="1">
-            <TextBlock Text="Productname" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-                <TextBox Name="txtProductNameLeft" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBlock Text="Product ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBox Name="txtProductIdLeft" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                 <TextBlock Text="Number of productpieces" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                 <TextBox Name="txtProductPiecesLeft" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                 <TextBlock Text="Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
@@ -41,10 +41,8 @@
             </StackPanel>
 
             <StackPanel Name="sp2" Visibility ="Collapsed" Grid.Column="2">
-            <TextBlock Text="Productname" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-            <TextBox Name="txtProductNameRight" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-            <TextBlock Text="Old Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-            <TextBox Name="txtOldLocationRight" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBlock Text="Product ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Name="txtProductIdRight" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
             <TextBlock Text="New Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
             <TextBox Name="txtNewLocationRight" Width="100" HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
