@@ -16,6 +16,6 @@ namespace RestService.DBTasks
         bool AddProduct(string productName, int locID);
         bool DeleteProduct(int productID);
         bool TransferProduct(int productID, int newLocationID);
-        bool checkProduct(string productName);
+        bool CheckProduct(string productName);
     }
 }

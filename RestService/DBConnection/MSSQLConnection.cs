@@ -2,7 +2,7 @@
 
 namespace RestService.DBTasks
 {
-    public class MSSQLConnection : IConnection
+    public class MSSQLConnection
     {
         string connectionString =
             "Data Source=localhost\\SQLEXPRESS;Initial Catalog = RaktarKeszlet; Integrated Security=True";
@@ -24,7 +24,7 @@ namespace RestService.DBTasks
 
         private MSSQLConnection() {}
 
-        public object GetConnection()
+        public SqlConnection GetConnection()
         {
             connection = new SqlConnection();
             connection.ConnectionString = connectionString;

@@ -50,7 +50,7 @@ namespace RestService.DBTasks
             }
         }
 
-        public bool checkProduct(string productName)
+        public bool CheckProduct(string productName)
         {
             throw new NotImplementedException();
         }

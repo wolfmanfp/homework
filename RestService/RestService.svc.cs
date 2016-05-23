@@ -12,6 +12,11 @@ namespace RestService
     {
         private IDatabase database;
 
+        public RestService()
+        {
+            database = new MSSQLDatabase();
+        }
+
         public string AddProduct(string token, string productName, int locID)
         {
             throw new NotImplementedException();
@@ -44,12 +49,12 @@ namespace RestService
 
         public string Login(string user, string pass)
         {
-            throw new NotImplementedException();
+            bool result = database.Authenticate(user, pass);
         }
 
         public string TransferProduct(string token, int productID, int locID)
         {
-            throw new NotImplementedException();
+            bool result = database.TransferProduct(productID, locID);
         }
     }
 }

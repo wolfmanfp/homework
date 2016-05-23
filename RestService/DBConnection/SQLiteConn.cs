@@ -2,7 +2,7 @@
 
 namespace RestService.DBTasks
 {
-    public class SQLiteConn: IConnection
+    public class SQLiteConn
     {
         string connectionString =
             "Data Source = @\"Database\\raktar.sqlite\"; Version = 3;";
@@ -24,7 +24,7 @@ namespace RestService.DBTasks
 
         private SQLiteConn() { }
 
-        public object GetConnection()
+        public SQLiteConnection GetConnection()
         {
             connection = new SQLiteConnection();
             connection.ConnectionString = connectionString;
