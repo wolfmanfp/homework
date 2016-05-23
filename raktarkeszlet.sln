@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Windows Desktop
+# Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EladoKliens", "EladoKliens\EladoKliens.csproj", "{AF55DBE9-8F6D-4F40-820A-765C447D93DF}"
@@ -8,6 +8,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaktarosKliens", "RaktarosKliens\RaktarosKliens.csproj", "{1129EFD3-35F4-40D0-A996-FDF8CDAF35FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaktarSzerver", "RaktarSzerver\RaktarSzerver.csproj", "{833C9A78-59CC-4DED-A681-7B76B6698A21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService", "..\raktarkeszlet-master\WcfService\WcfService.csproj", "{5E3512B7-50B7-43CB-AF7A-8EA65187890E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\raktarkeszlet-master\Data\Data.csproj", "{00BAF41B-E908-4A6C-881C-F935EF963E45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{833C9A78-59CC-4DED-A681-7B76B6698A21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{833C9A78-59CC-4DED-A681-7B76B6698A21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{833C9A78-59CC-4DED-A681-7B76B6698A21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E3512B7-50B7-43CB-AF7A-8EA65187890E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E3512B7-50B7-43CB-AF7A-8EA65187890E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E3512B7-50B7-43CB-AF7A-8EA65187890E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E3512B7-50B7-43CB-AF7A-8EA65187890E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00BAF41B-E908-4A6C-881C-F935EF963E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00BAF41B-E908-4A6C-881C-F935EF963E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00BAF41B-E908-4A6C-881C-F935EF963E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00BAF41B-E908-4A6C-881C-F935EF963E45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
