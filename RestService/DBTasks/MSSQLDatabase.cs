@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RestService.Model;
+using System;
 using System.Collections.Generic;
-using RestService.Model;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -18,7 +18,7 @@ namespace RestService.DBTasks
         public bool AddProduct(string productName, int locID)
         {
             SqlCommand command = new SqlCommand(
-                "INSERT INTO Products(Name, LocationID) VALUES (@PName, @LocID);", 
+                "INSERT INTO Products(Name, LocationID) VALUES (@PName, @LocID);",
                 connection);
             command.Parameters.Add("@PName", SqlDbType.VarChar).Value = productName;
             command.Parameters.Add("@LocID", SqlDbType.Int).Value = locID;
@@ -46,12 +46,14 @@ namespace RestService.DBTasks
             }
         }
 
-        public bool Authenticate(string user, string pass)
+        public bool Authenticate(string user, string pass, int jobID)
         {
             SqlCommand command = new SqlCommand();
-            command.CommandText = "SELECT Password FROM Users WHERE Name = @Name";
+            command.CommandText = "SELECT Password FROM Users WHERE Name = @Name AND JobID = @JobID;";
             command.Connection = connection;
             command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = user;
+            command.Parameters.Add("@JobID", SqlDbType.Int).Value = jobID;
+
             try
             {
                 connection.Open();
@@ -143,7 +145,7 @@ namespace RestService.DBTasks
             SqlCommand command = new SqlCommand(
                 "SELECT * FROM Locations;",
                 connection);
-            
+
             try
             {
                 command.Connection.Open();
@@ -151,8 +153,8 @@ namespace RestService.DBTasks
                 while (reader.Read())
                 {
                     Location location = new Location();
-                    location.ID = (int) reader["ID"];
-                    location.LocationName = (string) reader["LocationName"];
+                    location.ID = (int)reader["ID"];
+                    location.LocationName = (string)reader["LocationName"];
                     locations.Add(location);
                 }
                 return locations;
@@ -181,9 +183,9 @@ namespace RestService.DBTasks
                 while (reader.Read())
                 {
                     Product product = new Product();
-                    product.ID = (int) reader["ID"];
-                    product.Name = (string) reader["Name"];
-                    product.LocationID = (int) reader["LocationID"];
+                    product.ID = (int)reader["ID"];
+                    product.Name = (string)reader["Name"];
+                    product.LocationID = (int)reader["LocationID"];
                     products.Add(product);
                 }
                 return products;
@@ -244,7 +246,8 @@ namespace RestService.DBTasks
                 if (res == 1)
                 {
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
                 }

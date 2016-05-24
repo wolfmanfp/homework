@@ -1,10 +1,6 @@
 ﻿using RestService.DBTasks;
-using System;
+using RestService.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 
 namespace RestService
 {
@@ -17,44 +13,158 @@ namespace RestService
             database = new MSSQLDatabase();
         }
 
-        public string AddProduct(string token, string productName, int locID)
+        public Response AddProduct(AddProductRequest request)
         {
-            throw new NotImplementedException();
+            string status;
+            if (Token.IsValid(request.Token))
+            {
+                if (database.AddProduct(request.ProductName, request.LocationID))
+                {
+                    status = "ok";
+                }
+                else
+                {
+                    status = "error";
+                }
+            }
+            else
+            {
+                status = "invalid token";
+            }
+
+            return new Response(status);
         }
 
-        public string DeleteProduct(string token, int productID)
+        public Response CheckProduct(CheckProductRequest request)
         {
-            throw new NotImplementedException();
+            string status;
+            if (Token.IsValid(request.Token))
+            {
+                if (database.CheckProduct(request.ProductName))
+                {
+                    status = "ok";
+                }
+                else
+                {
+                    status = "error";
+                }
+            }
+            else
+            {
+                status = "invalid token";
+            }
+
+            return new Response(status);
         }
 
-        public string CheckProduct(string token, string productName)
+        public Response DeleteProduct(DeleteProductRequest request)
         {
-            throw new NotImplementedException();
+            string status;
+            if (Token.IsValid(request.Token))
+            {
+                if (database.DeleteProduct(request.ProductID))
+                {
+                    status = "ok";
+                }
+                else
+                {
+                    status = "error";
+                }
+            }
+            else
+            {
+                status = "invalid token";
+            }
+
+            return new Response(status);
         }
 
-        public string ListLocations(string token)
+        public ListLocationsResponse ListLocations(Request request)
         {
-            throw new NotImplementedException();
+            string status;
+            List<Location> locations = null;
+            if (Token.IsValid(request.Token))
+            {
+                locations = database.Locations();
+                status = "ok";
+            }
+            else
+            {
+                status = "error";
+            }
+            return new ListLocationsResponse(status, locations);
         }
 
-        public string ListProducts(string token)
+        public ListProductsResponse ListProducts(Request request)
         {
-            throw new NotImplementedException();
+            string status;
+            List<Product> products = null;
+            if (Token.IsValid(request.Token))
+            {
+                products = database.Products();
+                status = "ok";
+            }
+            else
+            {
+                status = "error";
+            }
+            return new ListProductsResponse(status, products);
         }
 
-        public string ListProductsByLocation(string token, int locID)
+        public ListProductsResponse ListProductsByLocation(ListProductsByLocationRequest request)
         {
-            throw new NotImplementedException();
+            string status;
+            List<Product> products = null;
+            if (Token.IsValid(request.Token))
+            {
+                products = database.ProductsByLocation(request.LocationID);
+                status = "ok";
+            }
+            else
+            {
+                status = "error";
+            }
+            return new ListProductsResponse(status, products);
         }
 
-        public string Login(string user, string pass)
+        public LoginResponse Login(LoginRequest request)
         {
-            bool result = database.Authenticate(user, pass);
+            string status;
+            string token = "";
+
+            if (database.Authenticate(request.User, request.Password, request.JobID))
+            {
+                token = Token.Create();
+                status = "ok";
+            }
+            else
+            {
+                status = "error";
+            }
+
+            return new LoginResponse(status, token);
         }
 
-        public string TransferProduct(string token, int productID, int locID)
+        public Response TransferProduct(TransferProductRequest request)
         {
-            bool result = database.TransferProduct(productID, locID);
+            string status;
+            if (Token.IsValid(request.Token))
+            {
+                if (database.TransferProduct(request.ProductID, request.NewLocationID))
+                {
+                    status = "ok";
+                }
+                else
+                {
+                    status = "error";
+                }
+            }
+            else
+            {
+                status = "invalid token";
+            }
+
+            return new Response(status);
         }
     }
 }

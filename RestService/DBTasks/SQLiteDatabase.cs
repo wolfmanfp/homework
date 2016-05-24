@@ -1,6 +1,6 @@
-﻿using System;
+﻿using RestService.Model;
+using System;
 using System.Collections.Generic;
-using RestService.Model;
 using System.Data;
 using System.Data.SQLite;
 
@@ -46,12 +46,13 @@ namespace RestService.DBTasks
             }
         }
 
-        public bool Authenticate(string user, string pass)
+        public bool Authenticate(string user, string pass, int jobID)
         {
             SQLiteCommand command = new SQLiteCommand(
-                "SELECT Password FROM Users WHERE Name = @Name;",
+                "SELECT Password FROM Users WHERE Name = @Name AND JobID = @JobID;",
                 connection);
             command.Parameters.Add("@Name", DbType.String).Value = user;
+            command.Parameters.Add("@JobID", DbType.Int32).Value = jobID;
 
             try
             {
