@@ -20,7 +20,7 @@
 x64/
 x86/
 bld/
-[Bb]in/
+[Bb]in/*
 [Oo]bj/
 
 # Visual Studio 2015 cache/options directory
@@ -237,4 +237,5 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
-!/RestService/bin/Database/raktar.sqlite
+RestService/bin/*
+!RestService/bin/Database/raktar.sqlite
