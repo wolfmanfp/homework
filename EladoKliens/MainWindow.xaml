@@ -4,15 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EladoKliens"
+        xmlns:p="clr-namespace:EladoKliens.Properties"
         mc:Ignorable="d"
-        Title="Eladó" Height="350" Width="525">
+        Title="{x:Static p:Resources.Title}" Height="350" Width="525">
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="135" Margin="5,0,0,0">
-            <Label x:Name="label" Content="Felhasználónév" />
+            <Label x:Name="label" Content="{x:Static p:Resources.Username}" />
             <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="{Binding UserName}"/>
-            <Label x:Name="label1" Content="Jelszó"/>
+            <Label x:Name="label1" Content="{x:Static p:Resources.Password}"/>
             <PasswordBox x:Name="passwordBox" MaxLength="8"/>
-            <Button x:Name="button" Content="Button" Margin="5,10,5,0"/>
+            <Button x:Name="button" Content="{x:Static p:Resources.Login}" Margin="5,10,5,0"/>
         </StackPanel>
 
     </Grid>
