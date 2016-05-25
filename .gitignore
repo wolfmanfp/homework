@@ -236,3 +236,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+!/RestService/bin/Database/raktar.sqlite

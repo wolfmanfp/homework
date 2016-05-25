@@ -10,7 +10,7 @@ namespace RestService
 
         public RestService()
         {
-            database = new MSSQLDatabase();
+            database = new SQLiteDatabase();
         }
 
         public Response AddProduct(AddProductRequest request)

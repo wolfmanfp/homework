@@ -4,9 +4,6 @@ namespace RestService.DBTasks
 {
     public class SQLiteConn
     {
-        private string connectionString =
-            "Data Source = @\"Database\\raktar.sqlite\"; Version = 3;";
-
         private SQLiteConnection connection;
 
         private static SQLiteConn instance;
@@ -29,8 +26,12 @@ namespace RestService.DBTasks
 
         public SQLiteConnection GetConnection()
         {
+            string relativePath = @"Database\raktar.sqlite";
+            string currentPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            string absolutePath = System.IO.Path.Combine(currentPath, relativePath).Remove(0, 6);
+
             connection = new SQLiteConnection();
-            connection.ConnectionString = connectionString;
+            connection.ConnectionString = string.Format("Data Source={0}; Version = 3;", absolutePath);
             return connection;
         }
     }
