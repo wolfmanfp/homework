@@ -61,11 +61,38 @@ namespace EladoKliens.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Authentication failed. Please try again..
+        /// </summary>
+        public static string LoginError {
+            get {
+                return ResourceManager.GetString("LoginError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage products.
+        /// </summary>
+        public static string ManageProducts {
+            get {
+                return ResourceManager.GetString("ManageProducts", resourceCulture);
             }
         }
         
@@ -79,11 +106,38 @@ namespace EladoKliens.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search for products:.
+        /// </summary>
+        public static string ProductSearch {
+            get {
+                return ResourceManager.GetString("ProductSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string SearchButton {
+            get {
+                return ResourceManager.GetString("SearchButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Seller.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer.
+        /// </summary>
+        public static string TransferButton {
+            get {
+                return ResourceManager.GetString("TransferButton", resourceCulture);
             }
         }
         

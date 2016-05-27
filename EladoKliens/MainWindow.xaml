@@ -7,14 +7,41 @@
         xmlns:p="clr-namespace:EladoKliens.Properties"
         mc:Ignorable="d"
         Title="{x:Static p:Resources.Title}" Height="350" Width="525">
-    <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="319" VerticalAlignment="Top" Width="135" Margin="5,0,0,0">
+
+    <Window.Resources>
+        <local:VisibilityConverter x:Key="VisibilityConverter"/>
+    </Window.Resources>
+
+    <Grid HorizontalAlignment="Left" Width="515">
+        <StackPanel HorizontalAlignment="Left" Height="309" VerticalAlignment="Top" Width="135" Margin="5,0,0,0" 
+                    IsEnabled="{Binding Enabled}">
             <Label x:Name="label" Content="{x:Static p:Resources.Username}" />
-            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="{Binding UserName}"/>
-            <Label x:Name="label1" Content="{x:Static p:Resources.Password}"/>
-            <PasswordBox x:Name="passwordBox" MaxLength="8"/>
-            <Button x:Name="button" Content="{x:Static p:Resources.Login}" Margin="5,10,5,0"/>
+            <TextBox x:Name="txtUsername" Height="23" TextWrapping="Wrap" Text="{Binding UserName}" />
+            <Label x:Name="label1" Content="{x:Static p:Resources.Password}" />
+            <PasswordBox x:Name="txtPassword" MaxLength="8" Height="25"/>
+            <Button x:Name="btnLogin" Content="{x:Static p:Resources.Login}" Margin="5,10,5,0" 
+                    Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=txtPassword}"/>
         </StackPanel>
+
+        <Grid HorizontalAlignment="Left" Height="309" Margin="160,0,0,0" VerticalAlignment="Top" Width="345"
+              Visibility="{Binding Visible, Converter={StaticResource VisibilityConverter}}">
+            <Label x:Name="label2" Content="{x:Static p:Resources.ProductSearch}" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top" FontWeight="Bold"/>
+            <TextBox x:Name="txtProduct" HorizontalAlignment="Left" Height="23" Margin="0,26,0,0" TextWrapping="Wrap" 
+                     VerticalAlignment="Top" Width="267"/>
+            <Button x:Name="btnSearch" Content="{x:Static p:Resources.SearchButton}" HorizontalAlignment="Left" 
+                    Margin="272,26,0,0" VerticalAlignment="Top" Width="73" Height="23"
+                    Command="{Binding SearchCommand}"/>
+            <ListBox x:Name="lstProducts" HorizontalAlignment="Left" Height="160" Margin="0,95,0,0"
+                     VerticalAlignment="Top" Width="345"/>
+            <ComboBox x:Name="cmbLocations" HorizontalAlignment="Left" Margin="0,277,0,0" VerticalAlignment="Top"
+                      Width="267"/>
+            <Button x:Name="btnTransfer" Content="{x:Static p:Resources.TransferButton}" HorizontalAlignment="Left" 
+                    Margin="272,277,0,0" VerticalAlignment="Top" Width="73" Height="22"
+                    Command="{Binding TransferCommand}"/>
+            <Label x:Name="label3" Content="{x:Static p:Resources.ManageProducts}" HorizontalAlignment="Left"
+                   Margin="0,64,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        </Grid>
 
     </Grid>
 </Window>

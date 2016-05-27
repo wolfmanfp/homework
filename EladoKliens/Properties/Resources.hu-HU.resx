@@ -117,14 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Error" xml:space="preserve">
+    <value>Hiba</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Belépés</value>
+  </data>
+  <data name="LoginError" xml:space="preserve">
+    <value>A bejelentkezés sikertelen. Kérjük, próbálja meg újra.</value>
+  </data>
+  <data name="ManageProducts" xml:space="preserve">
+    <value>Termékek kezelése</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Jelszó:</value>
   </data>
+  <data name="ProductSearch" xml:space="preserve">
+    <value>Termék keresése</value>
+  </data>
+  <data name="SearchButton" xml:space="preserve">
+    <value>Keresés</value>
+  </data>
   <data name="Title" xml:space="preserve">
     <value>Eladó</value>
+  </data>
+  <data name="TransferButton" xml:space="preserve">
+    <value>Átkér</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Felhasználónév:</value>
