@@ -1,2 +1,23 @@
-target
-shippable
+# Visual Studio
+
+# Maven
+**/target/
+wcskatedra/shippable/
+
+# NetBeans
+
+# IntelliJ
+**/.idea/
+
+# Node.js
+**/node_modules
+xslevelup/web/maze/maze.css
+
+# Android
+
+# Windows
+**/desktop.ini
+**/Thumbs.db
+
+# Linux
+**/*~
