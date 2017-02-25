@@ -1,0 +1,6 @@
+[submodule "xslevelup/web/minesweeper"]
+	path = xslevelup/web/minesweeper
+	url = https://github.com/fjanos92/minesweeper
+[submodule "wcskatedra/poker-team-alpha"]
+	path = wcskatedra/poker-team-alpha
+	url = https://github.com/wcs-katedra/poker-team-alpha
