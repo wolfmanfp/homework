@@ -1,23 +1,138 @@
-# Visual Studio
+### Android ###
+# Built application files
+**/*.apk
+**/*.ap_
 
-# Maven
-**/target/
-wcskatedra/shippable/
+# Files for the ART/Dalvik VM
+**/*.dex
 
-# NetBeans
+# Generated files
+**/gen/
+**/gen-external-apklibs/
+**/out/
 
-# IntelliJ
+# Gradle files
+**/.gradle/
+**/build/
+
+# Proguard
+**/proguard-project.txt
+
+# Log Files
+**/*.log
+
+# Keystore files
+**/*.jks
+
+# External native build folder generated in Android Studio 2.2 and later
+**/.externalNativeBuild
+
+### Eclipse ###
+**/.metadata
+**/tmp/
+**/*.tmp
+**/*.bak
+**/.settings/
+**/.loadpath
+**/.project
+**/.classpath
+
+### IntelliJ ###
 **/.idea/
+**/*.iml
+**/modules.xml
+**/*.ipr
+**/*.iws
 
-# Node.js
-**/node_modules
-xslevelup/web/maze/maze.css
+### Java ###
+# Compiled class file
+**/*.class
 
-# Android
+# Package Files
+**/*.jar
+**/*.war
+**/*.ear
 
-# Windows
-**/desktop.ini
-**/Thumbs.db
+# virtual machine crash logs
+**/hs_err_pid*
 
-# Linux
+### Maven ###
+**/target/
+**/dependency-reduced-pom.xml
+
+### Linux ###
 **/*~
+
+### NetBeans ###
+**/nbproject/private/
+**/nbbuild/
+**/dist/
+**/nbdist/
+**/.nb-gradle/
+**/nb-configuration.xml
+**/nbactions.xml
+
+### Node ###
+
+# Runtime data
+**/pids
+**/*.pid
+**/*.pid.lock
+
+# Grunt intermediate storage
+**/.grunt
+
+# Bower dependency directory
+**/bower_components
+
+# Dependency directories
+**/node_modules/
+
+# Optional npm cache directory
+**/.npm
+
+### Windows ###
+**/Thumbs.db
+**/[Dd]esktop.ini
+**/*.lnk
+
+### Visual Studio ###
+
+# User-specific files
+**/*.suo
+
+# Build results
+**/[Dd]ebug/
+**/[Rr]elease/
+**/x64/
+**/x86/
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
+
+# Visual Studio 2015 cache/options directory
+**/.vs/
+
+# ReSharper is a .NET coding add-in
+**/_ReSharper*/
+**/*.[Rr]e[Ss]harper
+**/*.DotSettings.user
+
+# NuGet Packages
+**/*.nupkg
+**/packages/*
+!**/packages/build/
+**/*.nuget.props
+**/*.nuget.targets
+
+# Visual Studio cache files
+**/*.[Cc]ache
+!**/*.[Cc]ache/
+
+### Project specific ###
+wcskatedra/shippable/
+xslevelup/web/maze/maze.css
+gallery/src/main/webapp/style.css
+gallery/src/main/webapp/style.css.map
+
+# Originally created by https://www.gitignore.io/api/windows,linux,netbeans,eclipse,intellij,android,java,visualstudio,node,maven
