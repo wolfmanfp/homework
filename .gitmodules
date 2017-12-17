@@ -4,3 +4,9 @@
 [submodule "wcskatedra/poker-team-alpha"]
 	path = wcskatedra/poker-team-alpha
 	url = https://github.com/wcs-katedra/poker-team-alpha
+[submodule "gallery"]
+	path = gallery
+	url = https://github.com/wolfmanfp/gallery.git
+[submodule "timetable"]
+	path = timetable
+	url = https://github.com/wolfmanfp/timetable.git
