@@ -1,0 +1,58 @@
+﻿<Window x:Class="numgame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:numgame"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Guess the number!" Height="350" Width="525">
+
+    <Grid>
+        <TextBlock x:Name="textBlock" 
+    		HorizontalAlignment="Left" 
+    		Margin="13,11,0,0" 
+    		TextWrapping="Wrap" 
+    		Text="Enter your guess" 
+    		VerticalAlignment="Top" 
+    		RenderTransformOrigin="-0.204,0.625"
+    		Foreground="LightGray">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Hidden" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=value}"
+    						Value="{x:Static sys:String.Empty}">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+
+        <StackPanel FocusManager.FocusedElement="{Binding ElementName=value}">
+            <TextBox x:Name="value" 
+                 HorizontalAlignment="Left" 
+                 Height="20" 
+                 Margin="10,10,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="{Binding Value}" 
+                 VerticalAlignment="Top" 
+                 Width="120"
+                 Background="Transparent"/>
+        </StackPanel>
+
+        <Button x:Name="send" 
+                Content="Send" 
+                HorizontalAlignment="Left" 
+                Margin="135,10,0,0" 
+                VerticalAlignment="Top" 
+                Width="75"
+                IsDefault="True"
+                Click="send_Click"
+                Command="{Binding SendCommand}">
+        </Button>
+        
+        <Label x:Name="result" Content="{Binding Result}" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Height="26"/>
+    </Grid>
+</Window>
