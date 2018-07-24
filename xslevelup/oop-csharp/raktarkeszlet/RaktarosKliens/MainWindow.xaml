@@ -1,0 +1,54 @@
+﻿<Window x:Class="RaktarosKliens.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RaktarosKliens"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Username" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Name="txtUserName" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBlock Text="Password" HorizontalAlignment ="Center" Margin="0,0,0,5"/>
+            <TextBox Name="txtPassWord" Width="100" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <Button Name ="btnLogin" Click="btnLogin_Click" MinWidth="90" HorizontalAlignment="Center">
+                <TextBlock Text="Login" Padding="2"/>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Name="sp1" Visibility ="Collapsed" Grid.Column="1">
+            <TextBlock Text="Product ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBox Name="txtProductIdLeft" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBlock Text="Number of productpieces" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBox Name="txtProductPiecesLeft" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBlock Text="Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+                <TextBox Name="txtLocationLeft" Width="100" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <Button Name="btnGetProducts" Click="btnGetProducts_Click" MinWidth="90" HorizontalAlignment="Center" Margin="0,0,0,10">
+                    <TextBlock Text="Get Products"  HorizontalAlignment="Center" Padding="2"/>
+                </Button>
+                <Button Name="btnAddProducts" Click="btnAddProducts_Click" MinWidth="90" HorizontalAlignment="Center">
+                    <TextBlock Text="Add Products"  HorizontalAlignment="Center" Padding="2"/>
+                </Button>
+            </StackPanel>
+
+            <StackPanel Name="sp2" Visibility ="Collapsed" Grid.Column="2">
+            <TextBlock Text="Product ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Name="txtProductIdRight" Width="100" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBlock Text="New Location ID" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <TextBox Name="txtNewLocationRight" Width="100" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <Button Name="btnTransferProducts" Click="btnTransferProducts_Click" MinWidth="90" HorizontalAlignment="Center">
+                <TextBlock x:Name="btnText" Text="Transfer Products" HorizontalAlignment="Center" Padding="2"/>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
