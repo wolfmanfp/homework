@@ -1,0 +1,118 @@
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: 'Share Tech Mono', sans-serif;
+}
+
+body {background-color: #000020;}
+
+header, #tableholder, #colors {border: 1px solid #ffffee;}
+
+header {
+    height: 50px;
+    width: 348px;
+    margin: 10px auto;
+}
+
+header h1 {
+    line-height: 50px;
+    text-align: center;
+    color: #ffffee;
+}
+
+#tableholder {
+    width: 348px;
+    margin: 0 auto;
+}
+
+#tableholder table {
+    margin: 10px auto;
+    height: 328px;
+    width: 328px;
+}
+
+td {
+    background-color: white;
+    border: 1px solid #ffffee;
+    cursor: crosshair;
+}
+
+.black {background-color: black;}
+.red {background-color: red;}
+.green {background-color: green;}
+.blue {background-color: blue;}
+.cyan {background-color: cyan;}
+.magenta {background-color: magenta;}
+.yellow {background-color: yellow;}
+
+#colors {
+    width: 328px;
+    padding: 5px 10px;
+    margin: 10px auto;
+}
+
+#colors div {
+    width: 33px;
+    height: 33px;
+    border: 1px solid #ffffee;
+    margin: 2px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#colors .active {
+    width: 31px;
+    height: 31px;
+    border: 2px solid #ffffee;
+}
+
+#buttons {
+    margin: 5px auto;
+    width: 350px;
+}
+
+#buttons div {
+    width: 168px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #ffffee;
+    margin-bottom: 10px;
+    background-color: #ffffee;
+    color: #000020;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#buttons div:hover, .close:hover {
+    background-color: #000020;
+    color: #ffffee;
+}
+
+#about {
+    display: none;
+    position: absolute;
+    top: 200px;
+    left: 0;
+    right: 0;
+    width: 528px;
+    border: 1px solid #ffffee;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #000020;
+    color: #ffffee;
+}
+
+#about p {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.close {
+    background-color: #ffffee;
+    color: #000020;
+    text-decoration: none;
+}
