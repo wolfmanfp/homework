@@ -129,10 +129,4 @@
 **/*.[Cc]ache
 !**/*.[Cc]ache/
 
-### Project specific ###
-wcskatedra/shippable/
-xslevelup/web/maze/maze.css
-gallery/src/main/webapp/style.css
-gallery/src/main/webapp/style.css.map
-
 # Originally created by https://www.gitignore.io/api/windows,linux,netbeans,eclipse,intellij,android,java,visualstudio,node,maven
