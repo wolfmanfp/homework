@@ -10,3 +10,6 @@
 [submodule "timetable"]
 	path = timetable
 	url = https://github.com/wolfmanfp/timetable.git
+[submodule "xslevelup/web/tortoisedream"]
+	path = xslevelup/web/tortoisedream
+	url = https://github.com/wolfmanfp/tortoisedream.git
