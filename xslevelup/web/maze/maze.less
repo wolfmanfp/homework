@@ -1,0 +1,46 @@
+@lightcolor: #ffffee;
+@darkcolor: #000020;
+
+.image(@file) {
+    background: url(~"'img/@{file}'");
+}
+
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+
+* {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font-family: 'Share Tech Mono', sans-serif;
+}
+
+body {background-color: @darkcolor;}
+
+header {
+    height: 50px;
+    width: 336px;
+    margin: 10px auto;
+    border: 1px solid @lightcolor;
+
+    h1 {
+        line-height: 50px;
+        text-align: center;
+        color: @lightcolor;
+    }
+}
+
+#maze table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    .image("floor.png");
+
+    td {
+        width: 16px;
+        height: 16px;      
+    }
+}
+
+.wall {.image("wall.png");}
+.gem {.image("gem.gif");}
+.end {.image("door.gif");}
+.player {.image("player.gif");}

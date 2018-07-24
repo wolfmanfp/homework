@@ -1,0 +1,16 @@
+{
+  "name": "Maze",
+  "version": "1.0.0",
+  "description": "A simple maze game.",
+  "main": "maze.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Farkas Péter",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.0.5",
+    "gulp-watch": "^4.3.5"
+  }
+}
