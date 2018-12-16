@@ -1,7 +1,8 @@
 #include <stdio.h>
+#include <time.h>
 
 #define SIZE 50
-#define MAX_ITERATION 100
+#define MAX_ITERATION 10000
 
 char mandelbrot_set[SIZE][SIZE];
 
@@ -33,7 +34,6 @@ void calculate_mandelbrot_set()
 			}
 			
 			setX++;
-			
 		}
 		setY++;
 	}
@@ -50,7 +50,15 @@ void output_set() {
 
 int main() 
 {
+	clock_t start, end;
+	double diff;
+
+	start = clock();
 	calculate_mandelbrot_set();
+	end = clock();
+	diff = ((double) end - start) / CLOCKS_PER_SEC;
+
 	output_set();
+	printf("A Mandelbrot-halmaz kiszamitasa %.5lf mp-et vett igenybe.\n", diff);
 	return 0;
 }
