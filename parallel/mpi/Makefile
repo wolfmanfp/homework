@@ -1,11 +1,9 @@
 all: factorial
 
-WARNINGS = -Wall
-DEBUG = -ggdb -fno-omit-frame-pointer
-OPTIMIZE = -O2
+THREADS = 2
 
-factorial: Makefile factorial.c
-	$(CC) -o $@ $(WARNINGS) $(DEBUG) $(OPTIMIZE) factorial.c
+factorial: Makefile factorial.cpp
+	mpicxx -o $@ factorial.cpp
 
 clean:
 	rm -f factorial
@@ -16,5 +14,5 @@ install:
 
 # Builder uses this target to run your application.
 run:
-	./factorial
+	mpiexec -np $(THREADS) ./factorial
 
