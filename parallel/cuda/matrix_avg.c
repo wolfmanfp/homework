@@ -33,16 +33,16 @@ int* findIndices(int size, double *vector) {
   indices = (int *) malloc(size * sizeof(int));
   averages = (double *) malloc(size * sizeof(double));
 
-  for (int col = 0; col < 5; col++) {
+  for (int col = 0; col < size; col++) {
     double sum = 0.0;
-    for (int row = 0; row < 5; row++) {
-      sum += vector[col + row * 5];
+    for (int row = 0; row < size; row++) {
+      sum += vector[col + row * size];
     }
-    averages[col] = sum / 5;
+    averages[col] = sum / size;
 
     indices[col] = -1;
-    for (int row = 0; row < 5; row++) {
-      if (vector[col + row * 5] == averages[col]) {
+    for (int row = 0; row < size; row++) {
+      if (vector[col + row * size] == averages[col]) {
         indices[col] = col;
         break;
       }
@@ -52,9 +52,9 @@ int* findIndices(int size, double *vector) {
   return indices;
 }
 
-void printResults(int *indices) {
+void printResults(int size, int *indices) {
 	FILE *fp = fopen("output.txt", "w");
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < size; i++) {
     if (indices[i] != -1) {
       fprintf(fp, "%d ", indices[i]);
     }
@@ -71,7 +71,7 @@ int main(int argc, char **argv) {
   int size = strtod(argv[1], NULL);
   double *vector = readMatrix(size, argv[2]);
   int *indices = findIndices(size, vector);
-  printResults(indices);
+  printResults(size, indices);
 
   return 0;
 }
