@@ -17,15 +17,12 @@ class Car
 
   private:
     ros::NodeHandle nh;
-    double linear, angular, lScale, aScale;
+    double linear, angular;
     ros::Publisher twistPub;
 };
 
-Car::Car() : linear(0), angular(0), lScale(0.1), aScale(0.1)
+Car::Car() : linear(0), angular(0)
 {
-  nh.param("scale_angular", aScale, aScale);
-  nh.param("scale_linear", lScale, lScale);
-
   twistPub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 }
 
@@ -97,8 +94,8 @@ void Car::keyLoop()
     }
 
     geometry_msgs::Twist twist;
-    twist.angular.z = aScale * angular;
-    twist.linear.x = lScale * linear;
+    twist.angular.z = angular;
+    twist.linear.x = linear;
     if (dirty == true)
     {
       twistPub.publish(twist);
