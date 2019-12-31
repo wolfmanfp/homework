@@ -1,6 +1,8 @@
 ### Projekt ###
 output.txt
 hf1
+randomgen
+build*/
 
 ### Linux ###
 .goutputstream-*

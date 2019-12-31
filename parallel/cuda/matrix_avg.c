@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 double* readMatrix(int size, char *filename) {
 	double *vector;
@@ -52,6 +53,12 @@ int* findIndices(int size, double *vector) {
   return indices;
 }
 
+void printMeasuredTime(int size, double time) {
+  FILE *fp = fopen("time.txt", "w");
+  fprintf(fp, "%dx%d matrix: %.4lf s", size, size, time);
+  fclose(fp);
+}
+
 void printResults(int size, int *indices) {
 	FILE *fp = fopen("output.txt", "w");
   for (int i = 0; i < size; i++) {
@@ -70,7 +77,10 @@ int main(int argc, char **argv) {
 
   int size = strtod(argv[1], NULL);
   double *vector = readMatrix(size, argv[2]);
+  clock_t start = clock();
   int *indices = findIndices(size, vector);
+  clock_t end = clock();
+  printMeasuredTime(size, (float)(end - start) / CLOCKS_PER_SEC);
   printResults(size, indices);
 
   return 0;
