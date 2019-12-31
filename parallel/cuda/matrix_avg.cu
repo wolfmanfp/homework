@@ -6,7 +6,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <cuda.h>
+#include <cuda_runtime.h>
+#include "device_launch_parameters.h"
 
 double* readMatrix(int size, char *filename) {
 	double *vector;
@@ -27,36 +29,62 @@ double* readMatrix(int size, char *filename) {
 	return vector;
 }
 
-int* findIndices(int size, double *vector) {
-  int *indices;
-  double *averages;
-
-  indices = (int *) malloc(size * sizeof(int));
-  averages = (double *) malloc(size * sizeof(double));
-
+__global__ void findIndicesKernel(int size, double *vector, int *indices) {
   for (int col = 0; col < size; col++) {
     double sum = 0.0;
     for (int row = 0; row < size; row++) {
       sum += vector[col + row * size];
     }
-    averages[col] = sum / size;
+    double avg = sum / size;
 
-    indices[col] = -1;
     for (int row = 0; row < size; row++) {
-      if (vector[col + row * size] == averages[col]) {
+      if (vector[col + row * size] == avg) {
         indices[col] = col;
         break;
       }
     }
   }
-
-  return indices;
 }
 
 void printMeasuredTime(int size, double time) {
   FILE *fp = fopen("time.txt", "w");
-  fprintf(fp, "%dx%d matrix: %.4lf s", size, size, time);
+  fprintf(fp, "%dx%d matrix: %.8lf s", size, size, time);
   fclose(fp);
+}
+
+int* findIndices(int size, double *vector) {
+  int *indices, *device_indices;
+  double *device_vector;
+
+  cudaEvent_t start, end;
+  cudaEventCreate(&start);
+  cudaEventCreate(&end);
+
+  indices = (int *)malloc(size * sizeof(int));
+  for (int i = 0; i < size; i++)
+  {
+    indices[i] = -1;
+  }
+
+  cudaMalloc((void **)&device_vector, size * size * sizeof(double));
+  cudaMalloc((void **)&device_indices, size * sizeof(int));
+  cudaMemcpy(device_vector, vector, size * size, cudaMemcpyHostToDevice);
+  cudaMemcpy(device_indices, indices, size, cudaMemcpyHostToDevice);
+
+  cudaEventRecord(start);
+  findIndicesKernel<<<1, 1>>>(size, device_vector, device_indices);
+  cudaEventRecord(end);
+
+  cudaMemcpy(indices, device_indices, size, cudaMemcpyDeviceToHost);
+  cudaFree(device_vector);
+  cudaFree(device_indices);
+
+  cudaEventSynchronize(end);
+  float milliseconds = 0;
+  cudaEventElapsedTime(&milliseconds, start, end);
+  printMeasuredTime(size, milliseconds / 1000);
+
+  return indices;
 }
 
 void printResults(int size, int *indices) {
@@ -77,11 +105,10 @@ int main(int argc, char **argv) {
 
   int size = strtod(argv[1], NULL);
   double *vector = readMatrix(size, argv[2]);
-  clock_t start = clock();
   int *indices = findIndices(size, vector);
-  clock_t end = clock();
-  printMeasuredTime(size, (float)(end - start) / CLOCKS_PER_SEC);
   printResults(size, indices);
 
+  free(vector);
+  free(indices);
   return 0;
 }

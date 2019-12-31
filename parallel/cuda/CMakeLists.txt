@@ -1,12 +1,17 @@
 cmake_minimum_required(VERSION 2.8)
-project(hf1)
+project(hf2)
 
+find_package(CUDA REQUIRED)
 include(CTest)
 
-add_executable(randomgen randomgen.c)
-add_executable(hf1 matrix_avg.c)
+set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} -G)
+add_definitions(-D_CRT_SECURE_NO_DEPRECATE)
 
-add_test(NincsArgumentum hf1)
+add_executable(randomgen randomgen.c)
+cuda_add_executable(hf2 matrix_avg.cu)
+target_link_libraries(hf2 ${CUDA_LIBRARIES})
+
+add_test(NincsArgumentum hf2)
 set_tests_properties(NincsArgumentum PROPERTIES WILL_FAIL true)
 IF(WIN32)
   add_test(OutputEllenorzes powershell ./test.ps1 5 matrix.txt)
