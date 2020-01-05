@@ -37,6 +37,7 @@ __global__ void findIndicesKernel(int size, double *vector, int *indices) {
     }
     double avg = sum / size;
 
+    indices[col] = -1;
     for (int row = 0; row < size; row++) {
       if (vector[col + row * size] == avg) {
         indices[col] = col;
@@ -55,27 +56,23 @@ void printMeasuredTime(int size, double time) {
 int* findIndices(int size, double *vector) {
   int *indices, *device_indices;
   double *device_vector;
+  size_t vector_size = size * size * sizeof(double);
+  size_t indices_size = size * sizeof(int);
 
   cudaEvent_t start, end;
   cudaEventCreate(&start);
   cudaEventCreate(&end);
 
   indices = (int *)malloc(size * sizeof(int));
-  for (int i = 0; i < size; i++)
-  {
-    indices[i] = -1;
-  }
-
-  cudaMalloc((void **)&device_vector, size * size * sizeof(double));
-  cudaMalloc((void **)&device_indices, size * sizeof(int));
-  cudaMemcpy(device_vector, vector, size * size, cudaMemcpyHostToDevice);
-  cudaMemcpy(device_indices, indices, size, cudaMemcpyHostToDevice);
+  cudaMalloc((void **)&device_vector, vector_size);
+  cudaMalloc((void **)&device_indices, indices_size);
+  cudaMemcpy(device_vector, vector, vector_size, cudaMemcpyHostToDevice);
 
   cudaEventRecord(start);
   findIndicesKernel<<<1, 1>>>(size, device_vector, device_indices);
   cudaEventRecord(end);
 
-  cudaMemcpy(indices, device_indices, size, cudaMemcpyDeviceToHost);
+  cudaMemcpy(indices, device_indices, indices_size, cudaMemcpyDeviceToHost);
   cudaFree(device_vector);
   cudaFree(device_indices);
 
