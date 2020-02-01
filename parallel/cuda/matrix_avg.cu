@@ -4,34 +4,40 @@
  * the same column. The outputs are the indices of the columns.
  */
 
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <cuda.h>
 #include <cuda_runtime.h>
 #include "device_launch_parameters.h"
 
+#define BLOCK_SIZE 256
+
 double* readMatrix(int size, char *filename) {
-	double *vector;
+  double *vector;
 
   FILE *fp = fopen(filename, "r");
-	if (fp == NULL) {
-		printf("A fajl nem talalhato!");
-		exit(1);
-	}
+  if (fp == NULL) {
+    printf("A fajl nem talalhato!");
+    exit(1);
+  }
 
-	vector = (double *) malloc(size * size * sizeof(double));
+  vector = (double *) malloc(size * size * sizeof(double));
   int i = 0;
-	while (fscanf(fp, "%lf ", &vector[i]) != EOF) {
-		i++;
-	}
+  while (fscanf(fp, "%lf ", &vector[i]) != EOF) {
+    i++;
+  }
 
-	fclose(fp);
-	return vector;
+  fclose(fp);
+  return vector;
 }
 
 __global__ void findIndicesKernel(int size, double *vector, int *indices) {
-  for (int col = 0; col < size; col++) {
-    double sum = 0.0;
+  int col = blockIdx.x * blockDim.x + threadIdx.x;
+  double sum = 0.0;
+
+  if (col < size)
+  {
     for (int row = 0; row < size; row++) {
       sum += vector[col + row * size];
     }
@@ -69,7 +75,7 @@ int* findIndices(int size, double *vector) {
   cudaMemcpy(device_vector, vector, vector_size, cudaMemcpyHostToDevice);
 
   cudaEventRecord(start);
-  findIndicesKernel<<<1, 1>>>(size, device_vector, device_indices);
+  findIndicesKernel<<<ceil(size / BLOCK_SIZE), BLOCK_SIZE>>>(size, device_vector, device_indices);
   cudaEventRecord(end);
 
   cudaMemcpy(indices, device_indices, indices_size, cudaMemcpyDeviceToHost);
@@ -79,19 +85,22 @@ int* findIndices(int size, double *vector) {
   cudaEventSynchronize(end);
   float milliseconds = 0;
   cudaEventElapsedTime(&milliseconds, start, end);
+
   printMeasuredTime(size, milliseconds / 1000);
+  cudaEventDestroy(start);
+  cudaEventDestroy(end);
 
   return indices;
 }
 
 void printResults(int size, int *indices) {
-	FILE *fp = fopen("output.txt", "w");
+  FILE *fp = fopen("output.txt", "w");
   for (int i = 0; i < size; i++) {
     if (indices[i] != -1) {
       fprintf(fp, "%d ", indices[i]);
     }
   }
-	fclose(fp);
+  fclose(fp);
 }
 
 int main(int argc, char **argv) {
@@ -107,5 +116,6 @@ int main(int argc, char **argv) {
 
   free(vector);
   free(indices);
+  cudaDeviceReset();
   return 0;
 }
